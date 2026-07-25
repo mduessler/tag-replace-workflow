@@ -20,3 +20,10 @@ on:
         default: "tag2"
 permissions:
   contents: write
+jobs:
+  replace-tag:
+    uses: ./.github/workflows/replace-tag-reusable.yaml
+    with:
+      file: ${{ inputs.file }}
+      search: ${{ inputs.search }}
+      replace: ${{ inputs.replace }}
