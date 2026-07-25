@@ -36,7 +36,7 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: docker/build-push-action@v7
         with:
           ref: ${{ github.ref_name }}
       - name: Log in to GitHub Container Registry
