@@ -18,3 +18,22 @@ on:
         default: "tag2"
 permissions:
   contents: write
+jobs:
+  replace-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Replace tag
+        id: replace
+        uses: ./.github/actions/replace-tag
+        with:
+          file: ${{ inputs.file }}
+          search: ${{ inputs.search }}
+          replace: ${{ inputs.replace }}
+      - name: Commit and push changes
+        if: steps.replace.outputs.changed == 'true'
+        env:
+          FILE: ${{ inputs.file }}
+          COMMIT_MESSAGE: "chore: replace '${{ inputs.search }}' with '${{ inputs.replace }}' in ${{ inputs.file }}"
+        run: ${{ github.workspace }}/.github/scripts/commit-and-push
