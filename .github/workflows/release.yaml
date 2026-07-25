@@ -20,6 +20,7 @@ on:
         default: "tag2"
 permissions:
   contents: write
+  packages: write
 jobs:
   replace-tag:
     uses: ./.github/workflows/replace-tag-reusable.yaml
