@@ -1,0 +1,18 @@
+Technical Assessment - DevOps Engineer
+=======================================
+
+tag1
+tag3
+tag12
+
+This file is processed by the replace-tag GitHub Action.
+
+Current release tag: tag1
+
+The workflow replaces every occurrence of the search string,
+so this second mention of tag1 is not updated. A tag2 should
+not be updated.
+
+
+This tag12 should not be updated.
+tag1
