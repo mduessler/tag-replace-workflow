@@ -16,3 +16,5 @@ on:
         required: false
         type: string
         default: "tag2"
+permissions:
+  contents: write
