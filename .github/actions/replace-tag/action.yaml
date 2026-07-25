@@ -1,0 +1,29 @@
+name: "Replace Tag"
+description: "Replaces a string in a text file (e.g. tag1 -> tag2)"
+inputs:
+  file:
+    description: "Path to the text file"
+    required: true
+  search:
+    description: "String to search for"
+    required: false
+    default: "tag1"
+  replace:
+    description: "Replacement string"
+    required: false
+    default: "tag2"
+outputs:
+  changed:
+    description: "Whether the file was modified (true/false)"
+    value: ${{ steps.replace.outputs.changed }}
+runs:
+  using: "composite"
+  steps:
+    - name: Replace string in file
+      id: replace
+      shell: bash
+      env:
+        FILE: ${{ inputs.file }}
+        SEARCH: ${{ inputs.search }}
+        REPLACE: ${{ inputs.replace }}
+      run: "${GITHUB_ACTION_PATH}/replace-tag"
