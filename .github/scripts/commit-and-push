@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+log_error() {
+	echo "[ERROR] $*" >&2
+}
+
+verify_environment_variables() {
+	if [[ -z "${FILE:-}" ]]; then
+		log_error "Environment variable 'FILE' is not set"
+		exit 1
+	fi
+	if [[ -z "${COMMIT_MESSAGE:-}" ]]; then
+		log_error "Environment variable 'COMMIT_MESSAGE' is not set"
+		exit 1
+	fi
+}
+
+main() {
+	verify_environment_variables
+	git config user.name "github-actions[bot]"
+	git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+	git add "${FILE}"
+	git commit -m "${COMMIT_MESSAGE}"
+	git push
+}
+
+main
