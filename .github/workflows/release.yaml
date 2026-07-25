@@ -1,0 +1,20 @@
+name: Release
+run-name: "Replace '${{ inputs.search }}' -> '${{ inputs.replace }}' in ${{ inputs.file }} (by @${{ github.actor }})"
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "Path to the text file"
+        required: false
+        type: string
+        default: "content.txt"
+      search:
+        description: "String to search for"
+        required: false
+        type: string
+        default: "tag1"
+      replace:
+        description: "Replacement string"
+        required: false
+        type: string
+        default: "tag2"
